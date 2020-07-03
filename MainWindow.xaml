@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraphBuilder"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800">
-    <Grid>
+        Title="MainWindow" Height="600" Width="800">
+    <Grid x:Name="mainGrid">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="151*" Name="left"></ColumnDefinition>
-            <ColumnDefinition Width="47*" Name="right"></ColumnDefinition>
+            <ColumnDefinition Width="3*" Name="left"></ColumnDefinition>
+            <ColumnDefinition Width="*" Name="right"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="Введите функцию" VerticalAlignment="Top" Width="168" Name="txtFunc" TextChanged="txtFunc_TextChanged"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,38,0,0" TextWrapping="Wrap" Text="Введите минимальный Х" VerticalAlignment="Top" Width="168" Name="txtXmin" TextChanged="txtXmin_TextChanged"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,66,0,0" TextWrapping="Wrap" Text="Введите максимальный Х" VerticalAlignment="Top" Width="168" Name="txtXmax" TextChanged="txtXmax_TextChanged"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="Введите функцию" VerticalAlignment="Top" Width="168" Name="txtFunc" PreviewMouseLeftButtonDown="ClearTxtFunc" LostFocus="defTxtFunc"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,38,0,0" TextWrapping="Wrap" Text="Введите минимальный Х" VerticalAlignment="Top" Width="168" Name="txtXmin" PreviewMouseLeftButtonDown="ClearTxtXmin" LostFocus="defTxtXmin"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,66,0,0" TextWrapping="Wrap" Text="Введите максимальный Х" VerticalAlignment="Top" Width="168" Name="txtXmax" PreviewMouseLeftButtonDown="ClearTxtXmax" LostFocus="defTxtXmax"/>
         <Button Content="Построить график" Grid.Column="1" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" Width="168" Click="Button_Click"/>
     </Grid>
 </Window>

@@ -23,26 +23,162 @@ namespace GraphBuilder
         public MainWindow()
         {
             InitializeComponent();
+            plot();
+        }
+        public void plot()
+        {
+            Polygon frame = new Polygon
+            {
+                Points = new PointCollection()
+            };
+            frame.Points.Add(new Point(10, 10));
+            frame.Points.Add(new Point(10, 510));
+            frame.Points.Add(new Point(510, 510));
+            frame.Points.Add(new Point(510, 10));
+            frame.Stroke = Brushes.Black;
+            mainGrid.Children.Add(frame);
+            //------------------------------------------
+            //Линия абсцисс + стрелочка:
+            //------------------------------------------
+            Line Abs = new Line
+            {
+                X1 = 10,
+                X2 = 510,
+                Y1 = 260,
+                Y2 = 260,
+                StrokeThickness = 2,
+                Stroke = Brushes.Black
+            };
+            mainGrid.Children.Add(Abs);
+
+            Polyline AbsArr = new Polyline
+            {
+                Points = new PointCollection()
+            };
+            AbsArr.Points.Add(new Point(490, 255));
+            AbsArr.Points.Add(new Point(510, 260));
+            AbsArr.Points.Add(new Point(490, 265));
+            AbsArr.Stroke = Brushes.Black;
+            mainGrid.Children.Add(AbsArr);
+            //-------------------------------------------
+            //Линия ординат + стрелочка
+            //-------------------------------------------
+            Line Ord = new Line
+            {
+                X1 = 260,
+                X2 = 260,
+                Y1 = 10,
+                Y2 = 510,
+                Stroke = Brushes.Black,
+                StrokeThickness = 2
+            };
+            mainGrid.Children.Add(Ord);
+
+            Polyline OrdArr = new Polyline
+            {
+                Points = new PointCollection()
+            };
+            OrdArr.Points.Add(new Point(255, 30));
+            OrdArr.Points.Add(new Point(260, 10));
+            OrdArr.Points.Add(new Point(265, 30));
+            OrdArr.Stroke = Brushes.Black;
+            mainGrid.Children.Add(OrdArr);
+            //------------------------------------------
+            //Разметка координатной плоскости
+            //------------------------------------------
+            for (int i = 60; i < Abs.X2; i += 50)
+            {
+                Line AbsSub = new Line
+                {
+                    X1 = i,
+                    X2 = i,
+                    Y1 = 10,
+                    Y2 = 510,
+                    Stroke = Brushes.Gray,
+                    StrokeThickness = 1
+                };
+                mainGrid.Children.Add(AbsSub);
+            }
+            for (int j = 60; j < Ord.Y2; j += 50)
+            {
+                Line OrdSub = new Line
+                {
+                    X1 = 10,
+                    X2 = 510,
+                    Y1 = j,
+                    Y2 = j,
+                    Stroke = Brushes.Gray,
+                    StrokeThickness = 1
+                };
+                mainGrid.Children.Add(OrdSub);
+            }
+        }
+        public void ClearTxtFunc(object sender, RoutedEventArgs e)
+        {
+            if (txtFunc.Text == "Введите функцию")
+            {
+                txtFunc.Text = "";
+            }
+        }
+        public void ClearTxtXmax(object sender, RoutedEventArgs e)
+        {
+            if (txtXmax.Text == "Введите максимальный Х")
+            {
+                txtXmax.Text = "";
+            }
+        }
+        public void ClearTxtXmin(object sender, RoutedEventArgs e)
+        {
+            if (txtXmin.Text == "Введите минимальный Х")
+            {
+                txtXmin.Text = "";
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+      
         }
 
-        private void txtFunc_TextChanged(object sender, TextChangedEventArgs e)
+        private void defTxtFunc(object sender, RoutedEventArgs e)
         {
-            txtFunc.Text = "";
+            if (txtFunc.Text == "")
+            {
+                txtFunc.Text = "Введите функцию";
+            }
         }
-
-        private void txtXmin_TextChanged(object sender, TextChangedEventArgs e)
+        private void defTxtXmin(object sender, RoutedEventArgs e)
         {
-            txtXmin.Text = "";
+            if (txtXmin.Text == "")
+            {
+                txtXmin.Text = "Введите минимальный Х";
+            }
         }
-
-        private void txtXmax_TextChanged(object sender, TextChangedEventArgs e)
+        private void defTxtXmax(object sender, RoutedEventArgs e)
         {
-            txtXmax.Text = "";
+            if (txtXmax.Text == "")
+            {
+                txtXmax.Text = "Введите максимальный Х";
+            }
+        }
+    }
+    public partial class MathParser
+    {
+        public static string[] funcToArr(string func)
+        {
+            func = "x^2+3(x+x^3)-5cosx";
+            string[] parsedArr = new string[func.Length];
+            for (int i = 0; i < func.Length; i++)
+            {
+                parsedArr[i] = func[i].ToString();
+            }
+            return parsedArr;
+        }
+        public static double calc(string[] parsedArr)
+        {
+            double result;
+
+            return result;
         }
     }
 }
