@@ -137,7 +137,7 @@ namespace GraphBuilder
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-      
+            MathParser.Parser(txtFunc.Text);
         }
 
         private void defTxtFunc(object sender, RoutedEventArgs e)
@@ -174,11 +174,25 @@ namespace GraphBuilder
             }
             return parsedArr;
         }
-        public static double calc(string[] parsedArr)
+        public static double Parser(string func)
         {
+            string[] funcArr = funcToArr(func);
             double result;
-
-            return result;
+            string str;
+            
+            for (int n = 0; n < funcToArr(func).Length; n++)
+            {
+                if (funcArr[n] == "(")
+                {
+                    do
+                    {
+                        str = funcArr[n] + funcArr[n + 1];
+                        n += 2;
+                    }
+                    while (funcArr[n] != ")");
+                }
+            }
+            return 1;
         }
     }
 }
