@@ -11,10 +11,11 @@
             <ColumnDefinition Width="3*" Name="left"></ColumnDefinition>
             <ColumnDefinition Width="*" Name="right"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="Введите функцию" VerticalAlignment="Top" Width="168" Name="txtFunc" PreviewMouseLeftButtonDown="ClearTxtFunc" LostFocus="defTxtFunc"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,38,0,0" TextWrapping="Wrap" Text="Введите минимальный Х" VerticalAlignment="Top" Width="168" Name="txtXmin" PreviewMouseLeftButtonDown="ClearTxtXmin" LostFocus="defTxtXmin"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,66,0,0" TextWrapping="Wrap" Text="Введите максимальный Х" VerticalAlignment="Top" Width="168" Name="txtXmax" PreviewMouseLeftButtonDown="ClearTxtXmax" LostFocus="defTxtXmax"/>
-        <Button Content="Построить график" Grid.Column="1" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" Width="168" Click="Button_Click" Name="start"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" TextWrapping="Wrap" Text="Введите функцию" VerticalAlignment="Top" Width="170" Name="txtFunc" PreviewMouseLeftButtonDown="ClearTxtFunc" LostFocus="defTxtFunc"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="10,40,0,0" TextWrapping="Wrap" Text="Введите минимальный Х" VerticalAlignment="Top" Width="170" Name="txtXmin" PreviewMouseLeftButtonDown="ClearTxtXmin" LostFocus="defTxtXmin"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="10,70,0,0" TextWrapping="Wrap" Text="Введите максимальный Х" VerticalAlignment="Top" Width="170" Name="txtXmax" PreviewMouseLeftButtonDown="ClearTxtXmax" LostFocus="defTxtXmax"/>
+        <Button Content="Построить график" Grid.Column="1" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Width="168" Click="Button_Click" Name="start"/>
         <Canvas HorizontalAlignment="Left" Height="500" Margin="10,10,0,0" VerticalAlignment="Top" Width="500" Name="Canvas1"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="40" Margin="10,100,0,0" TextWrapping="Wrap" Text="Введите масштаб, единиц на клетку (по умолчанию, 50)" VerticalAlignment="Top" Width="170" Name="txtScale" PreviewMouseLeftButtonDown="ClearTxtScale" LostFocus="defTxtScale"/>
     </Grid>
 </Window>

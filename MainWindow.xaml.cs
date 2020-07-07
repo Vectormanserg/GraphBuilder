@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -135,9 +136,17 @@ namespace GraphBuilder
                 txtXmin.Text = "";
             }
         }
+        public void ClearTxtScale(object sender, RoutedEventArgs e)
+        {
+            if (txtScale.Text == "Введите масштаб, единиц на клетку (по умолчанию, 50)")
+            {
+                txtScale.Text = "";
+            }
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             Canvas1.Children.Clear();
             plot();
             try
@@ -173,20 +182,44 @@ namespace GraphBuilder
         }
         private void PlotBuild(double Min, double Max)
         {
-            double x, y, e = 0.1;
-            List<double> yArr = new List<double>();
+            double sc = 1;
+            double x, e = 0.01;
+            if (txtScale.Text == "Введите масштаб, единиц на клетку (по умолчанию, 50)")
+            {
+                sc = 1;
+            }
+            else sc = (double.Parse(txtScale.Text))/50;
             for (x = Min; x < Max; x += e)
             {
-                Line OneEl = new Line
+                Line OneEl = new Line();
+                try
                 {
-                    X1 = 260+x,
-                    X2 = 260+x+e,
-                    Y1 = 260-graphic.calc(x),
-                    Y2 = 260-graphic.calc(x+e),
-                    Stroke = Brushes.Red,
-                    StrokeThickness = 3
-                };
-                Canvas1.Children.Add(OneEl);
+                    
+                    {
+                        OneEl.X1 = 260 + x / sc;
+                        OneEl.X2 = 260 + (x + e) / sc;
+                        OneEl.Y1 = 260 - graphic.calc(x)/sc;
+                        OneEl.Y2 = 260 - graphic.calc(x + e)/sc;
+                        OneEl.Stroke = Brushes.Red;
+                        OneEl.StrokeThickness = 3;
+                    };
+                }
+                catch (System.ArgumentException)
+                {
+                    txtXmin.Text = "Недопустимый аргумент";
+                }
+                if (OneEl.X1 > 10 && OneEl.X2 < 510 && OneEl.Y1 > 10 && OneEl.Y2 < 510)
+                {
+                    Canvas1.Children.Add(OneEl);
+                }
+            }
+        }
+
+        private void defTxtScale(object sender, RoutedEventArgs e)
+        {
+            if (txtScale.Text == "")
+            {
+                txtScale.Text = "Введите масштаб, единиц на клетку (по умолчанию, 50)";
             }
         }
     }

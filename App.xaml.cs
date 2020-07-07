@@ -56,7 +56,7 @@ namespace GraphBuilder
     {
         public static double calc(double x)
         {
-            double y = x * x - 50;
+            double y = MathParser();
             return y;
         }
     }
