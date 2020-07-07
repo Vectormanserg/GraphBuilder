@@ -36,7 +36,7 @@ namespace GraphBuilder
             frame.Points.Add(new Point(510, 510));
             frame.Points.Add(new Point(510, 10));
             frame.Stroke = Brushes.Black;
-            mainGrid.Children.Add(frame);
+            Canvas1.Children.Add(frame);
             //------------------------------------------
             //Линия абсцисс + стрелочка:
             //------------------------------------------
@@ -49,7 +49,7 @@ namespace GraphBuilder
                 StrokeThickness = 2,
                 Stroke = Brushes.Black
             };
-            mainGrid.Children.Add(Abs);
+            Canvas1.Children.Add(Abs);
 
             Polyline AbsArr = new Polyline
             {
@@ -59,7 +59,7 @@ namespace GraphBuilder
             AbsArr.Points.Add(new Point(510, 260));
             AbsArr.Points.Add(new Point(490, 265));
             AbsArr.Stroke = Brushes.Black;
-            mainGrid.Children.Add(AbsArr);
+            Canvas1.Children.Add(AbsArr);
             //-------------------------------------------
             //Линия ординат + стрелочка
             //-------------------------------------------
@@ -72,7 +72,7 @@ namespace GraphBuilder
                 Stroke = Brushes.Black,
                 StrokeThickness = 2
             };
-            mainGrid.Children.Add(Ord);
+            Canvas1.Children.Add(Ord);
 
             Polyline OrdArr = new Polyline
             {
@@ -82,7 +82,7 @@ namespace GraphBuilder
             OrdArr.Points.Add(new Point(260, 10));
             OrdArr.Points.Add(new Point(265, 30));
             OrdArr.Stroke = Brushes.Black;
-            mainGrid.Children.Add(OrdArr);
+            Canvas1.Children.Add(OrdArr);
             //------------------------------------------
             //Разметка координатной плоскости
             //------------------------------------------
@@ -97,7 +97,7 @@ namespace GraphBuilder
                     Stroke = Brushes.Gray,
                     StrokeThickness = 1
                 };
-                mainGrid.Children.Add(AbsSub);
+                Canvas1.Children.Add(AbsSub);
             }
             for (int j = 60; j < Ord.Y2; j += 50)
             {
@@ -108,9 +108,10 @@ namespace GraphBuilder
                     Y1 = j,
                     Y2 = j,
                     Stroke = Brushes.Gray,
-                    StrokeThickness = 1
+                    StrokeThickness = 1,
                 };
-                mainGrid.Children.Add(OrdSub);
+                
+                Canvas1.Children.Add(OrdSub);
             }
         }
         public void ClearTxtFunc(object sender, RoutedEventArgs e)
@@ -137,9 +138,18 @@ namespace GraphBuilder
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            Canvas1.Children.Clear();
+            plot();
+            try
+            {
+                PlotBuild(double.Parse(txtXmin.Text), double.Parse(txtXmax.Text));
+            }
+            catch(System.FormatException)
+            {
+                txtXmax.Text = "Введите значение!";
+                txtXmin.Text = "Введите значение!";
+            }
         }
-
         private void defTxtFunc(object sender, RoutedEventArgs e)
         {
             if (txtFunc.Text == "")
@@ -159,6 +169,24 @@ namespace GraphBuilder
             if (txtXmax.Text == "")
             {
                 txtXmax.Text = "Введите максимальный Х";
+            }
+        }
+        private void PlotBuild(double Min, double Max)
+        {
+            double x, y, e = 0.1;
+            List<double> yArr = new List<double>();
+            for (x = Min; x < Max; x += e)
+            {
+                Line OneEl = new Line
+                {
+                    X1 = 260+x,
+                    X2 = 260+x+e,
+                    Y1 = 260-graphic.calc(x),
+                    Y2 = 260-graphic.calc(x+e),
+                    Stroke = Brushes.Red,
+                    StrokeThickness = 3
+                };
+                Canvas1.Children.Add(OneEl);
             }
         }
     }

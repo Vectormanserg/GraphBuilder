@@ -14,6 +14,7 @@
         <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="Введите функцию" VerticalAlignment="Top" Width="168" Name="txtFunc" PreviewMouseLeftButtonDown="ClearTxtFunc" LostFocus="defTxtFunc"/>
         <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,38,0,0" TextWrapping="Wrap" Text="Введите минимальный Х" VerticalAlignment="Top" Width="168" Name="txtXmin" PreviewMouseLeftButtonDown="ClearTxtXmin" LostFocus="defTxtXmin"/>
         <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,66,0,0" TextWrapping="Wrap" Text="Введите максимальный Х" VerticalAlignment="Top" Width="168" Name="txtXmax" PreviewMouseLeftButtonDown="ClearTxtXmax" LostFocus="defTxtXmax"/>
-        <Button Content="Построить график" Grid.Column="1" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" Width="168" Click="Button_Click"/>
+        <Button Content="Построить график" Grid.Column="1" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" Width="168" Click="Button_Click" Name="start"/>
+        <Canvas HorizontalAlignment="Left" Height="500" Margin="10,10,0,0" VerticalAlignment="Top" Width="500" Name="Canvas1"/>
     </Grid>
 </Window>
