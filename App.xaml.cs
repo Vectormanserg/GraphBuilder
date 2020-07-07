@@ -30,17 +30,34 @@ namespace GraphBuilder
         {
             List<string> Sub = new List<string>();
             double result;
-            string Temp = func;
-            //for (int i = 0;)
+            result = 1.25;
             return result;
         }
         public static double Skobki(string func)
         {
-            List<string> Sub = new List<string>();
+            string[] vars = new string[26] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
             double result;
-            string Temp = func;
-
+            List<string> Sub = new List<string>();
+            string Temp = func, trimmed;
+            int open, close;
+            result = Parser(Temp);
+            for (int i = 0; i < Temp.Length; i++)
+            {
+                open = Temp.IndexOf('(');
+                close = Temp.LastIndexOf(')');
+                trimmed = Temp.Substring(open, close);
+                Sub.Add(trimmed);
+                Temp = Temp.Replace(trimmed, vars[i]);
+            }
             return result;
+        }
+    }
+    public partial class graphic
+    {
+        public static double calc(double x)
+        {
+            double y = x * x-50;
+            return y;
         }
     }
 }
