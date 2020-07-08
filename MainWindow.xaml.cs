@@ -151,7 +151,7 @@ namespace GraphBuilder
             plot();
             try
             {
-                PlotBuild(double.Parse(txtXmin.Text), double.Parse(txtXmax.Text));
+                PlotBuild(double.Parse(txtXmin.Text), double.Parse(txtXmax.Text), txtFunc.Text);
             }
             catch(System.FormatException)
             {
@@ -180,7 +180,7 @@ namespace GraphBuilder
                 txtXmax.Text = "Введите максимальный Х";
             }
         }
-        private void PlotBuild(double Min, double Max)
+        private void PlotBuild(double Min, double Max,string func)
         {
             double sc = 1;
             double x, e = 0.01;
@@ -198,8 +198,8 @@ namespace GraphBuilder
                     {
                         OneEl.X1 = 260 + x / sc;
                         OneEl.X2 = 260 + (x + e) / sc;
-                        OneEl.Y1 = 260 - graphic.calc(x)/sc;
-                        OneEl.Y2 = 260 - graphic.calc(x + e)/sc;
+                        OneEl.Y1 = 260 - MathParser.Calculate(func, x)/sc;
+                        OneEl.Y2 = 260 - MathParser.Calculate(func, x + e)/sc;
                         OneEl.Stroke = Brushes.Red;
                         OneEl.StrokeThickness = 3;
                     };
