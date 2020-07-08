@@ -83,7 +83,6 @@ namespace GraphBuilder
                 }
                 else Inserted.Add(args[n]);
             }
-
             do
             {
                 int i;
