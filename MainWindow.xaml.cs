@@ -1,4 +1,5 @@
-﻿using System;
+﻿using stringParse;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -198,8 +199,8 @@ namespace GraphBuilder
                     {
                         OneEl.X1 = 260 + x / sc;
                         OneEl.X2 = 260 + (x + e) / sc;
-                        OneEl.Y1 = 260 - MathParser.Calculate(func, x)/sc;
-                        OneEl.Y2 = 260 - MathParser.Calculate(func, x + e)/sc;
+                        OneEl.Y1 = 260 - MathParser.Parser(func, x)/sc;
+                        OneEl.Y2 = 260 - MathParser.Parser(func, x + e)/sc;
                         OneEl.Stroke = Brushes.Red;
                         OneEl.StrokeThickness = 3;
                     };
